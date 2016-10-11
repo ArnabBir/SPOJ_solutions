@@ -49,10 +49,10 @@ int toDecimal(char num[]){
 int get_a(char subcipher[]){
     char deciphered[6];
 	for(int i = 0; i < 6; ++i){
-		int ascii = subcipher[i % 6];
+		int ascii = subcipher[i];
 		string binary = toBinary(ascii, 2);
 		reverse(binary.begin(), binary.end());
-		deciphered[i] = binary[i];
+		deciphered[i] = binary[i % 6];
 	}
 	return toDecimal(deciphered);
 }
@@ -60,11 +60,10 @@ int get_a(char subcipher[]){
 int get_b(char subcipher[]){
     char deciphered[6];
 	for(int i = 0; i < 6; ++i){
-	    int temp = ((i + 3) % 6);
-		int ascii = subcipher[temp];
+		int ascii = subcipher[i];
 		string binary = toBinary(ascii, 2);
 		reverse(binary.begin(), binary.end());
-		deciphered[i] = binary[i];
+		deciphered[i] = binary[(i + 3) % 6];
 	}
 	return toDecimal(deciphered);
 }
@@ -84,8 +83,6 @@ int main(){
 		cin>>key;
 
 		for(int i =0; i < n; ++i){
-		        //cout<<get_a(cipher[i])<<" ";
-		        //cout<<get_b(cipher[i])<<" ";
 				cout<<key[get_a(cipher[i])]<<key[get_b(cipher[i])];
 		}
 		cout<<endl;
