@@ -13,6 +13,11 @@ void multiply(long long A[2][2], long long B[2][2]){
     x3 = ((A[1][0]*B[0][0] % 1000000007) + (A[1][1]*B[1][0] % 1000000007))%1000000007;
     x4 = ((A[1][0]*B[0][1] % 1000000007) + (A[1][1]*B[1][1] % 1000000007))%1000000007;
     
+    if(x1 < 0)  x1 += 1000000007;
+    if(x2 < 0)  x2 += 1000000007;
+    if(x3 < 0)  x3 += 1000000007;
+    if(x4 < 0)  x4 += 1000000007;
+    
     A[0][0] = x1;
     A[0][1] = x2;
     A[1][0] = x3;
@@ -36,8 +41,10 @@ long long getFib(long long n){
     long long F[2][2] = {{1,1},{1,0}};
     
     power(F, n-1);
+    long long ans = F[0][0] % 1000000007;
+    if(ans < 0)	ans += 1000000007;
     
-    return F[0][0] % 1000000007;
+    return ans;
 } 
 
 int main() {
@@ -50,7 +57,9 @@ int main() {
 	while(T--){
 	    
 	    cin>>x>>y;
-	    cout<<getFib(y+2) - getFib(x+1)<<endl;
+	    long long ans = (getFib(y+2) - getFib(x+1)) % 1000000007;
+	    if(ans < 0)	ans += 1000000007;
+	    cout<<ans<<endl;
 	}
 	
 	return 0;
