@@ -43,7 +43,7 @@ bool search(struct TrieNode * root, string s) {
         }
         node = node->children[index];
     }
-    return node != NULL && node->isEnd == true;
+    return node != NULL;
 }
 
 int main() {
