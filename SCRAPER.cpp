@@ -3,8 +3,7 @@ using namespace std;
 
 bool furnitureMoved(vector< vector <bool> > & canAccess, vector<bool> & visited, vector< pair<int, int> > & dx, long long int e,long long int f, long long int a, long long int b) {
     
-    bool result = false;
-    if(a >= f && a < 0)  return false;
+    if(a >= f || a < 0)  return false;
     if(a == b)  return true;
     for(int i = 0; i < e; ++i) {
         if(canAccess[i][a]) {
@@ -16,14 +15,12 @@ bool furnitureMoved(vector< vector <bool> > & canAccess, vector<bool> & visited,
                 if(furnitureMoved(canAccess, visited, dx, e, f, a + dx[i].first, b)) {
                     return true;
                 }
-                visited[a+dx[i].first] = false;
             }
             if(a-dx[i].first >= dx[i].second  && !visited[a-dx[i].first]) {
                 visited[a-dx[i].first] = true;
                 if(furnitureMoved(canAccess, visited, dx, e, f, a - dx[i].first, b)) {
                     return true;
                 }
-                visited[a-dx[i].first] = false;
             }
         }
     }
